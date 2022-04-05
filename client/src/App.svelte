@@ -1,8 +1,9 @@
 <script>
 	import Product_card_component from "./components/Product_card_component.svelte"
 	import { onMount } from "svelte";
+	//import { products } from './stores'
+	let products = []
 	
-	let products = [];
 	onMount(async () => {
 		const response = await fetch("http://localhost:3000/api/transactions");
 		const data = await response.json();

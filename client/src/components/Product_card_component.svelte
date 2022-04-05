@@ -1,4 +1,5 @@
 <script>
+	import { slide } from "svelte/transition"
     export let products;
 	export let removeItem;
 	export let i;
@@ -6,7 +7,7 @@
 
 
 
-<div class="card cardstyle" style="width: 18rem;">
+<div class="card cardstyle" style="width: 18rem;" transition:slide>
 			<img src="./images/book.jpeg" class="card-img-top" alt="..." />
 			<div class="card-body">
 				<h5 class="card-title">{products[i].name}</h5>
