@@ -24,6 +24,10 @@ const TransactionSchema = new Schema({
 		type: Number,
 		default: now,
 	},
+	user_id:{
+		type:String,
+		required:true	
+	}
 });
 
 const Transaction = model("transaction", TransactionSchema);
