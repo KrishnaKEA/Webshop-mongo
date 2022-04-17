@@ -5,6 +5,7 @@ const User = require("../models/User")
 const router = Router()
 router.get('/user',(req,res)=>{
     if(req.user){
+        console.log(req.user)
         res.json({user:{username:req.user.username}})
     }else{
         res.json({user: null})
@@ -33,9 +34,19 @@ router.post('/logout',(req,res)=>{
         res.json({message:'No user found'})
     }
 })
+
+
+
+
+
 router.post('/login',passport.authenticate('local'),(req,res)=>{
     res.json({user:{username:req.user.username}})
 })
+
+
+
+
+
 router.post('/reset-password',(req,res,next)=>{
    if(!req.user) {
        return res.send({message:"no authenticated user found"})

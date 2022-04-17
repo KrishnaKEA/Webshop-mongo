@@ -1,15 +1,42 @@
 const { Router } = require("express");
 const Transaction = require("../models/Transaction");
+const user = require("../models/User")
+/*
+async function getuser(){
+	const user =  await import('../client/src/stores.js')
+	return user;
+}
+*/
+
 
 const router = Router();
 
 function checkLogin(req, res, next) {
+	
 	if (!req.isAuthenticated()) {
 		return res.status(401).send({ message: "Not authenticated" });
 	}
+
 	next();
 }
-router.get("/", checkLogin, async (req, res) => {
+
+
+
+router.get("/", async (req, res) => {
+	try {
+		const transactions = await Transaction.find();
+		if (!transactions) {
+			throw new Error("No transactions");
+		}
+		res.status(200).json(transactions);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+});
+
+
+
+router.get("/getall", checkLogin, async (req, res) => {
 	try {
 		const transactions = await Transaction.find({
 			user_id: req.user._id,
