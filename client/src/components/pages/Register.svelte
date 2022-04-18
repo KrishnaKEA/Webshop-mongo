@@ -7,13 +7,14 @@
   let password;
   let sec_question;
   let sec_answer;
+  let email;
   let errMessage;
   $:if(username){
     errMessage = null
   }
   async function register(){
     try{
-      const {data} = await axios.post("http://localhost:3000/api/auth/sign-up",{username,password,sec_question,sec_answer})
+      const {data} = await axios.post("http://localhost:3000/api/auth/sign-up",{username,password,sec_question,sec_answer,email})
       //console.log(data);
       $user = data.user;
       push('/login')
@@ -93,6 +94,18 @@
                         <label class="form-label" for="username">Security answer</label>
                       </div>
                     </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" bind:value={email} id="email" class="form-control" required />
+                        {#if errMessage }
+                        <p class="text-danger">{errMessage}</p>
+                        {/if}
+                        <label class="form-label" for="username">Email</label>
+                      </div>
+                    </div>
+  
   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" class="btn btn-primary btn-lg">Submit</button>

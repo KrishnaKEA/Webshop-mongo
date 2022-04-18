@@ -6,7 +6,8 @@ const User = new Schema({
    username: String,
    password: String,
    sec_question: String,
-   sec_answer: String
+   sec_answer: String,
+   email: String
 
 })
 

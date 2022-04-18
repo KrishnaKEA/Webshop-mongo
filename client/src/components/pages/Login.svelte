@@ -6,14 +6,16 @@
   let username;
   let password;
   let errMessage;
+  let currentuser;
   $:if(username){
     errMessage = null
   }
   async function signin(){
     try{
       const {data} = await axios.post("http://localhost:3000/api/auth/login",{username,password})
-      //console.log(data);
-      $user = data.user;
+      console.log(data);
+      user.update(user  => data )
+      console.log($user)
       push('/dashboard')
     }catch(error){
       if(error.response.data.message == 'UserExistsError'){

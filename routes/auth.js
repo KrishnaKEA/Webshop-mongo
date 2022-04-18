@@ -1,6 +1,7 @@
 const {Router} = require("express")
 const passport = require("passport")
 const User = require("../models/User")
+const nodemailer = require('nodemailer')
 
 
 const router = Router()
@@ -13,15 +14,19 @@ router.get('/user',(req,res)=>{
     }
 })
 router.post('/sign-up',async (req,res,next)=>{
-    const {username,password,sec_question,sec_answer} = req.body
+    const {username,password,sec_question,sec_answer,email} = req.body
     const usrDet = new User({
         username: username,
         sec_question: sec_question,
-        sec_answer: sec_answer
+        sec_answer: sec_answer,
+        email: email
     })
+    sendmail(username,sec_question,sec_answer,email);
     
     try{
         await User.register(usrDet,password)
+       
+        
 
     }catch(error){
         console.log(error);
@@ -87,7 +92,28 @@ router.post('/reset-password',async(req,res)=>{
 
 })
 
-
+function sendmail(username, sec_question,sec_answer,email){
+    let mailTransporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'testkea123@gmail.com',
+            pass: 'krishnaamen123'
+        }
+    });
+    let mailDetails = {
+        from: 'testkea123@gmail.com',
+        to: `${email}`,
+        subject: 'Mail confirmation from webshop',
+        text: `Your username is ${username}  security question is ${sec_question} and answer is ${sec_answer}`
+    };
+    mailTransporter.sendMail(mailDetails, function(err, data) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log('Email sent successfully');
+        }
+    });
+}
 
 
 module.exports = router

@@ -1,14 +1,17 @@
 <script>
 	import Product_card_component from "./Product_card_component.svelte";
+	import Navbar from "./Navbar.svelte"
 	import { onMount } from "svelte";
-	//import { products } from './stores'
+	//import { products } from '../../stores.js'
+	import { user } from '../../stores.js'
+
 
 	let products = [];
 
 	onMount(async () => {
 		const response = await fetch("http://localhost:3000/api/transactions");
 		const data = await response.json();
-		console.log(data);
+		//console.log();
 		products = data;
 	});
 	async function removeItem(id) {
@@ -23,11 +26,17 @@
 			products1 = products.filter((pro) => pro.data.id != id);
 			products = products1;
 		}
-		location.reload();
+		
 	}
 </script>
 
+<Navbar />
+
+<br>
+
+<hr />
 <main>
+
 	{#each products as product, i}
 		<Product_card_component {products} {removeItem} {i} />
 	{/each}
