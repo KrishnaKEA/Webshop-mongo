@@ -1,9 +1,9 @@
-<div>This is a Fullstack project using svelte as a frontend framework and Nodejs,expressjs in the backend where MongoDB is used as a database. I have implemented some othere libraries such as passport.js to authenticate and authorize the backend, toastr.js libratry to notify the user in frontend,nodemailer is used to send the confirmation email with security questions and answers when they signup.
+<div>This is a Fullstack project using svelte as a frontend framework and Nodejs,expressjs in the backend where MongoDB is used as a database. I have implemented some other libraries such as passport.js to authenticate and authorize the backend, toastr.js libratry to notify the user in frontend,nodemailer is used to send the confirmation email with security questions and answers when they signup.
 </div>
 <br />
 <hr>
 <p> 
-Api documentation 
+ Api documentation 
 <br>
 http://localhost:3000/api/auth/user - method GET - retrives the logged in user.
 <br>
