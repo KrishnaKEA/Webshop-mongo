@@ -5,12 +5,25 @@
 	import Register from "./components/pages/Register.svelte"
 	import Login from "./components/pages/Login.svelte"
 	import Forgetpassword from "./components/pages/forgetpassword.svelte"
+	import Checkout from "./components/pages/Checkout.svelte"
+
+
+	
+	let dBoard;
+	if (localStorage.currentuser === null){
+		dBoard = Login
+	}else{
+		dBoard = Dashboard
+	}
+
+
 	const routes = {
 	"/": Home,
-	"/dashboard": Dashboard,
+	"/dashboard": dBoard,
 	"/register": Register,
 	"/login":Login,
-	"/forgetpassword":Forgetpassword
+	"/forgetpassword":Forgetpassword,
+	"/checkout":Checkout
 
 
 }

@@ -79,3 +79,10 @@ button:focus {
 	);
 	border-radius: 20px;
 }
+ul{
+	display: flex;
+	
+}
+li{
+	list-style-type: none;
+}

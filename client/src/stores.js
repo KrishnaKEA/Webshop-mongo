@@ -1,3 +1,4 @@
 import {writable} from 'svelte/store'
-export const products = writable([])
-export const user = writable(null)
+export let products = writable([])
+export let user = writable(null)
+export let vlaue = writable(0)

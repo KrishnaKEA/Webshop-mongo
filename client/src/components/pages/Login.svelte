@@ -5,6 +5,7 @@
   import {push} from 'svelte-spa-router'
   let username;
   let password;
+
   let errMessage;
   let currentuser;
   $:if(username){
@@ -13,9 +14,15 @@
   async function signin(){
     try{
       const {data} = await axios.post("http://localhost:3000/api/auth/login",{username,password})
-      console.log(data);
-      user.update(user  => data )
-      console.log($user)
+      //console.log(data);
+      $user = data
+      localStorage.setItem("currentUser",username);
+      let currentuser = localStorage.getItem('currentUser')
+      console.log("**********************")
+      console.log(currentuser)
+      console.log("**********************")
+
+
       push('/dashboard')
     }catch(error){
       if(error.response.data.message == 'UserExistsError'){

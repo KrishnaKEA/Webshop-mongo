@@ -1,6 +1,6 @@
 <script>
     import axios from 'axios'
-    import {user} from '../../stores'
+    import {user} from '../../stores.js'
     import {push} from 'svelte-spa-router'
     let sec_question
     let sec_answer

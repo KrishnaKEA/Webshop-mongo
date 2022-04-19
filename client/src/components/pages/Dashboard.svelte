@@ -3,10 +3,12 @@
 	import Navbar from "./Navbar.svelte"
 	import { onMount } from "svelte";
 	//import { products } from '../../stores.js'
-	import { user } from '../../stores.js'
+	import Login from "./Login.svelte"
+	//import { user } from '../../stores.js'
 
 
 	let products = [];
+	let totalAmount = 0;
 
 	onMount(async () => {
 		const response = await fetch("http://localhost:3000/api/transactions");
@@ -14,7 +16,9 @@
 		//console.log();
 		products = data;
 	});
-	async function removeItem(id) {
+	 function removeItem() {
+		toastr.info(`One item  is added to basket.`)
+		/*
 		const response = await fetch(
 			"http://localhost:3000/api/transactions/" + id,
 			{
@@ -26,20 +30,24 @@
 			products1 = products.filter((pro) => pro.data.id != id);
 			products = products1;
 		}
+		*/
+		
 		
 	}
 </script>
 
-<Navbar />
+<Navbar {totalAmount} />
 
 <br>
 
 <hr />
 <main>
 
-	{#each products as product, i}
-		<Product_card_component {products} {removeItem} {i} />
+{#each products as product, i}
+		<Product_card_component {products} {i} />
 	{/each}
+
+	
 </main>
 
 <style>

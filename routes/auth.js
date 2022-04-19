@@ -44,6 +44,8 @@ router.post('/logout',(req,res)=>{
     if(req.user){
         req.logOut()
         res.json({message:"Logged out"})
+        
+
     }else{
         res.json({message:'No user found'})
     }
