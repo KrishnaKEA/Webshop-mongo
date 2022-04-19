@@ -11,9 +11,8 @@
 	function logout() {
 		localStorage.setItem("currentUser", null);
 	}
-	function checkout(val) {
-		let currentAmount = localStorage.getItem("totalAmount");
-		localStorage.setItem("totalAmount", currentAmount + val);
+	function checkout() {
+		toastr.info("Because of time limitaion i could not implement the check out functionality.")
 	}
 </script>
 
@@ -48,8 +47,8 @@
 						>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/#/login"
-							><button on:click={logout}>Proceed to Checkout</button></a
+						<a class="nav-link" href="/#/dashboard"
+							><button on:click={checkout}>Proceed to Checkout</button></a
 						>
 					</li>
 				</ul>
@@ -58,8 +57,4 @@
 	</div>
 </nav>
 
-<style>
-	ul {
-		display: flex-end;
-	}
-</style>
+
